@@ -20,13 +20,13 @@ docker compose up -d --build
 - 配置：`./config`（只读挂进容器）
 - 数据：`./data/public`（给宿主机 nginx 用）
 - 状态：`./data/state/status.json`
-- 状态接口只绑在宿主机 `127.0.0.1:8080`，不要把 8080 暴露到公网
+- 状态接口只绑在宿主机 `127.0.0.1:9999`，不要把 9999 暴露到公网
 
 看同步结果：
 
 ```bash
-curl -s http://127.0.0.1:8080/status
-curl -s http://127.0.0.1:8080/health
+curl -s http://127.0.0.1:9999/status
+curl -s http://127.0.0.1:9999/health
 ```
 
 首轮同步在后台进行。`/status` 里对应分组的 `ok` 变为 `true` 后，文件才在 `data/public/` 下。

@@ -185,7 +185,7 @@ def _parse_server(raw: object) -> ServerSettings:
     if not isinstance(raw, dict):
         raise ConfigError("server must be a mapping")
     bind = str(raw.get("bind", "0.0.0.0"))
-    port = int(raw.get("port", 8080))
+    port = int(raw.get("port", 9999))
     if not 1 <= port <= 65535:
         raise ConfigError(f"invalid port: {port}")
     return ServerSettings(bind=bind, port=port)

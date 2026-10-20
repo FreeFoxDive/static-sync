@@ -13,6 +13,6 @@ ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
     CONFIG_DIR=/config
 
-EXPOSE 8080
+EXPOSE 9999
 # 进程启动后若为 root，会 chown 数据目录并降权到 syncer。
 CMD ["python", "-m", "app.main"]
