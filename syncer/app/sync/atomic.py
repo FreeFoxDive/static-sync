@@ -34,6 +34,8 @@ def atomic_write(dest: Path, chunks: Iterable[bytes], max_bytes: int) -> int:
             os.fsync(handle.fileno())
         if total == 0:
             raise EmptyDownload("download was empty")
+        # mkstemp defaults to 0o600; chmod before replace so the visible file is never unreadable.
+        os.chmod(tmp, 0o644)
         os.replace(tmp, dest)
     except Exception:
         tmp.unlink(missing_ok=True)

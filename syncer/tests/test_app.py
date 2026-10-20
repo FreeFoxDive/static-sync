@@ -1,5 +1,6 @@
 import json
 import os
+import stat
 import threading
 import unittest
 import urllib.request
@@ -101,6 +102,19 @@ class DownloadTests(unittest.TestCase):
             dest.unlink(missing_ok=True)
             parent_parts = dest.parent.glob(".tmp-*.part")
             for leftover in parent_parts:
+                leftover.unlink(missing_ok=True)
+
+    def test_atomic_write_is_world_readable(self):
+        dest = Path(self.id().replace(".", "_") + ".bin")
+        try:
+            atomic_write(dest, [b"public"], 100)
+            mode = dest.stat().st_mode
+            self.assertTrue(mode & stat.S_IROTH, f"expected other-readable, got {oct(mode & 0o777)}")
+            if os.name != "nt":
+                self.assertEqual(mode & 0o777, 0o644)
+        finally:
+            dest.unlink(missing_ok=True)
+            for leftover in dest.parent.glob(".tmp-*.part"):
                 leftover.unlink(missing_ok=True)
 
     def test_redirect_to_private_is_rejected(self):
