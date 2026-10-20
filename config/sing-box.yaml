@@ -1,0 +1,19 @@
+# 输出目录默认等于文件名：data/public/sing-box/
+# 容器启动后会立刻同步一次，之后按 defaults 的 cron（北京时间每天 05:00）。
+sources:
+  - id: geosite-cn
+    enabled: true
+    type: url
+    url: "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-cn.srs"
+    dest: "geosite-cn.srs"
+  - id: geoip-cn
+    enabled: true
+    type: url
+    url: "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
+    dest: "geoip-cn.srs"
+
+  # 更多文件直接追加，例如：
+  # - id: geosite-private
+  #   type: url
+  #   url: "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-private.srs"
+  #   dest: "geosite-private.srs"

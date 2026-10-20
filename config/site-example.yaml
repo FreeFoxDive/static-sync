@@ -1,0 +1,30 @@
+# 通用站点/多文件示例。默认关闭，避免启动时访问 example.com。
+# 复制为新文件（如 docs.yaml）并设 enabled: true 即可生效。
+enabled: false
+output_dir: "site-example"
+schedule:
+  cron: "0 5 * * *"
+sources:
+  - id: homepage
+    type: url
+    url: "https://example.com/index.html"
+    dest: "index.html"
+  - id: assets
+    type: site
+    base_url: "https://example.com/"
+    paths:
+      - "css/app.css"
+      - "js/app.js"
+      - "assets/logo.png"
+    dest: "."
+  - id: github-pages-like
+    type: github
+    repo: "owner/repo"
+    ref: "gh-pages"
+    path: "/"
+    include:
+      - "*.html"
+      - "*.css"
+      - "*.js"
+      - "*.png"
+    dest: "."

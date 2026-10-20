@@ -1,0 +1,18 @@
+# 全局默认。各任务文件（sing-box.yaml 等）可覆盖 schedule。
+schedule:
+  cron: "0 5 * * *"
+  timezone: "Asia/Shanghai"
+  run_on_startup: true
+
+server:
+  # 容器内监听；compose 只把端口绑到宿主机 127.0.0.1
+  bind: "0.0.0.0"
+  port: 8080
+
+sync:
+  data_dir: "/data/public"
+  state_dir: "/data/state"
+  timeout_seconds: 60
+  max_bytes: 104857600
+  max_redirects: 5
+  user_agent: "static-sync/1.0"
