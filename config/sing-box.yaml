@@ -11,6 +11,11 @@ sources:
     type: url
     url: "https://raw.githubusercontent.com/SagerNet/sing-geoip/rule-set/geoip-cn.srs"
     dest: "geoip-cn.srs"
+  - id: geosite-geolocation-not-cn
+    enabled: true
+    type: url
+    url: "https://raw.githubusercontent.com/SagerNet/sing-geosite/rule-set/geosite-geolocation-!cn.srs"
+    dest: "geosite-geolocation-!cn.srs"
 
   # 更多文件直接追加，例如：
   # - id: geosite-private
